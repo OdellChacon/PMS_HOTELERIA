@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+   <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+   <title>reservas</title>
+    <style> body{
+      background-color:#FDEBD0 ;
+      }</style>
+</head>
+<body  bgcolor="red">
+  <script>
+  function calculardiasDiscount() {
+    
+    var timeStart = new Date(document.getElementById("timeStart").value);
+    var timeEnd = new Date(document.getElementById("timeEnd").value);
+    
+    var hoy = new Date();
+    var diae = timeStart.getDate()+1;
+    var mese = timeStart.getMonth()+1;
+    var anioe= timeStart.getFullYear();
+    var fecha_entrada = String(diae+"/"+mese+"/"+anioe);
+    var dia = timeEnd.getDate()+1;
+    var mes = timeEnd.getMonth()+1;
+    var anio= timeEnd.getFullYear();
+    var fecha_salida = String(dia+"/"+mes+"/"+anio);
+    var diao = hoy.getDate();
+    var meso = hoy.getMonth()+1;
+    var anioo= hoy.getFullYear();
+    var fecha_hoy = String(diao+"/"+meso+"/"+anioo);
+    
+    if (mese < meso ){
+      alert("verifique las fechas ingresadas por favor")
+        document.getElementById('timeStart').value = ''
+     }
+     if(diae < diao){
+      if(mese == meso){
+        alert("verifique las fechas ingresadas por favor")
+      document.getElementById('timeStart').value = ''
+      }
+      
+     }
+      if (timeEnd > timeStart)
+    {
+        var diff = timeEnd.getTime() - timeStart.getTime();
+        document.getElementById("daysDiscount").value = Math.round(diff / (1000 * 60 * 60 * 24));
+    }
+      else if (timeEnd != null && timeEnd < timeStart) {
+        alert("verifique las fechas ingresadas por favor")
+        document.getElementById('timeEnd').value = ''
+        document.getElementById("daysDiscount").value = 0;
+    
+    }
+    if (timeStart.getTime() == timeEnd.getTime()){
+      document.getElementById("daysDiscount").value = 1;
+  }
+ }
+  
+</script>
+
+   <div class="row">
+   <div class="col-md-12">
+   
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Hotel las lomas</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button><span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link">   Bienvenid@ {{ user.username }}</a>
+            </li>
+           
+            <li class="nav-item">
+              <a class="nav-link" href="/reservas/codigo_reserva">mi reservaciones</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">cerrar sesion</a>
+          </li>
+        
+        </ul>
+      </div>
+    </nav>
+<hr>
+<div >
+  <div class="wrapper wrapper--w960">
+      <div class="card card-2">
+       
+          <div class="card-body">
+              <h2 class="title">Reserva ya!</h2>
+              <form class="form" id="form" action="{% url 'crear_datos_reserva' %}" method="POST">
+                {% csrf_token %} 
+                  <div class="input-group">
+                    <label for="entrada">Entrada:</label>
+                    <input type="date" id="timeStart" name="timeStart" oninput=calculardiasDiscount() required>
+                    <label for="salida">Salida:</label>
+      <input type="date" id="timeEnd" name="timeEnd" oninput=calculardiasDiscount() required>
+                  </div>
+                  <input class="form-control" type="hidden" name="daysDiscount" id="daysDiscount">
+                  <div class="row row-space">
+                      <div class="col-2">
+                          <div class="input-group">
+                            <label for="c_personas">Adultos: </label> 
+                            <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="c_personas" id="c_personas" required>
+                              
+                              <option value="1"> 1</option>
+                              <option value="2"> 2</option>
+                              <option value="3"> 3</option>
+                              <option value="4"> 4</option>
+                             
+                            </select>
+                          </div>
+                      </div>
+                      <div class="col-2">
+                          <div class="input-group">
+                              <div >
+                                <label for="c_ninos">Niños: </label>
+                                <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="c_ninos" id="c_ninos" required>
+                                  <option value="0">ninguno</option>
+                                  <option value="1">1</option>
+                                  <option value="2">2</option>
+                                  <option value="3">3</option>
+                                  <option value="4">4</option>
+                                 
+                                </select>
+                                  <div class="select-dropdown"></div>
+                              
+                          </div>
+                      </div>
+                  </div>
+                  <div class="input-group">
+                      <div class="rs-select2 js-select-simple select--no-search">
+                        <label for="nombre_o">Nombre del ocupante:</label>
+                        <input type="text" id="nombre_o" name="nombre_o" required>
+                          <div class="select-dropdown"></div>
+                      </div>
+                  </div>
+                  <div class="row row-space">
+                      <div class="col-2">
+                          <div class="input-group">
+                            <label for="categorias">seleccione la categoria: </label>
+     
+                            <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="categoria" required>
+                            
+                              {% for nh in cat %} 
+                             <hr>
+                               <option value="{{nh.id}}">{{nh.nombre_c|capfirst}}  </option>
+                              <br>
+                              
+                              {% endfor %}  
+                              
+                             </select> 
+                          </div>
+                      </div>
+                  </div>
+                  <div class="p-t-30">
+                    <input class="btn btn-warning" type="submit" value="reservar" />
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+    
+
+     {% else %}
+     <li class="nav-item">
+     <a class="nav-link" href="{% url 'login' %}">Iniciar Sesion</a>
+         </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'register' %}">Registrarse</a>
+      </li>
+        {% endif %}
+    </div>
+    <!-- Footer -->
+ 
+  </body>
+</html>

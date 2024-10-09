@@ -1,0 +1,98 @@
+{% extends 'layouts/navbar.html' %}
+
+{% block content %}
+<div id="page-wrapper" >
+    {% if messages %}
+        {% for m in messages %}
+            <div class="alert alert-success" role="alert">
+                {{m}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">X</button>
+            </div>         
+        {% endfor %}
+    {% endif %} 
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+             <h2>Gestion <small>Proveedores</small></h2>                  
+            </div>
+        </div>
+         <hr />
+    
+    <div class="row">
+        
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading" style="background: #6495ed ; color: #ffffff; text-align: right;">
+                    Agregar Proveedor <button type="button" class="btn btn-success"><a href="{% url 'addProv' %}" style="text-decoration: none; color: #ffffff ;">+</a></button>
+
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Proveedor</th>
+                                    <th>Contacto</th>
+                                    <th>Direccion</th>
+                                    <th>Ciudad</th>
+                                    <th>Telefono</th>
+                                    <th>Pago</th>
+                                    <th>Entregas</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for c in entity %}
+                                    <tr>
+                                    <td>{{forloop.counter}}</td>
+                                    <td>{{c.Proveedor.title}}</td>
+                                    <td>{{c.NombreContacto.title}}</td>
+                                    <td>{{c.Direccion.title}}</td>
+                                    <td>{{c.Ciudad}}</th>
+                                    <td>{{c.Telefono}}</td>
+
+                                        {% if c.Pago == 0 %}
+                                            <td>Bolivares</td>
+                                        {% elif c.Pago == 1 %}
+                                            <td>Dolares</td>
+                                        {% elif c.Pago == 2 %}
+                                            <td>Pago Movil</td>
+                                        {% elif c.Pago == 3 %}
+                                            <td>Pesos Colombianos</td>
+                                        {% endif %}
+
+                                        {% if c.DiaEntregas == 0 %}
+                                            <td>Lunes</td>
+                                        {% elif c.DiaEntregas == 1 %}
+                                            <td>Martes</td>
+                                        {% elif c.DiaEntregas == 2 %}
+                                            <td>Miercoles</td>
+                                        {% elif c.DiaEntregas == 3 %}
+                                            <td>Jueves</td>
+                                        {% elif c.DiaEntregas == 4 %}
+                                            <td>Viernes</td>
+                                        {% elif c.DiaEntregas == 5 %}
+                                            <td>Sabado</td>
+                                        {% elif c.DiaEntregas == 6 %}
+                                            <td>Domingo</td>
+                                        {% endif %}
+                                    <td><div>
+                                        <button type="button" class="btn btn-warning"><a href="{% url 'actProveedor' c.id %}" style="text-decoration: none; color: #ffffff ;"><i class="fas fa-sync-alt"></i></a></button>
+                                        <button type="button" class="btn btn-danger btnEliminacion"><a href="{% url 'eliminarProveedor' c.id %}" style="text-decoration: none; color: #ffffff ;"><i class="fas fa-trash-alt"></i></a></button>
+                                    </div></td>
+                                   </tr> 
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        <div>
+                            <center>{% include 'paginator.html' %}</center>
+                        </div>
+                    </div><hr>
+                </div>
+            </div>
+        </div>
+    </div>       
+</div>
+</div>
+{% endblock %}

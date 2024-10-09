@@ -1,0 +1,257 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reporte de Inventario</title>
+   
+    <style type="text/css">
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        @page{
+            size: a3;
+            margin: 15px;
+        }
+        .header {
+            display: flex;
+            width: 320px;
+            height: 120px;
+            justify-content: center;
+            align-items: center;
+        }
+        .logo {
+            width: 250px;
+            height: 150px;
+            padding-bottom: 0px;            
+            text-align: center;
+        }
+        .table-container {
+            margin: 20px auto;
+            width: 80%;
+        }
+
+        .title {
+            font-size: 24px;
+            text-align: center;
+            padding: 0;
+            margin: 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th {
+            background-color: #F96E01;
+            color: #fff;
+            text-align: center;
+            padding: 8px;
+        }
+
+        td {
+            padding: 4px 8px 4px 8px;
+            text-align: center;
+        }
+        .footer {
+            background-color: #f2f2f2;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="https://i.ibb.co/GpqRVK9/favicon.png" alt="logo" class="logo" />
+        <h2 class="title">Reporte de Proveedores</h2>   
+    </div>
+
+    <div class="table-container">
+        <h3>Cantidad de Proveedores: {{ count_proveedores }}</h3>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Proveedor</th>
+                    <th>Nombre de Contacto</th>
+                    <th>Direccion</th>
+                    <th>Ciudad</th>
+                    <th>Telefono</th>
+                    <th>Correo</th>
+                    <th>Pago</th>
+                    <th>Dia de Entrega</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in proveedores %}
+                <tr>
+                    <td>{{ item.Proveedor }}</td>
+                    <td>{{ item.NombreContacto }}</td>
+                    <td>{{ item.Direccion }}</td>
+                    <td>{{ item.Ciudad }}</td>
+                    <td>{{ item.Telefono }}</td>
+                    <td class="correo" style="word-wrap: break-word;">{{ item.Correo }}</td>
+                    <td>
+                        {% if item.Pago == 0 %}
+                          {{ moneda.0.1 }}
+                        {% elif item.Pago == 1 %}
+                          {{ moneda.1.1 }}
+                        {% elif item.Pago == 2 %}
+                          {{ moneda.2.1 }}
+                        {% elif item.Pago == 3 %}
+                          {{ moneda.3.1 }}
+                        {% else %}
+                          Valor no encontrado
+                        {% endif %}
+                      </td>
+                      <td>
+                        {% if item.DiaEntregas == 0 %}
+                          {{ semana.0.1 }}
+                        {% elif item.DiaEntregas == 1 %}
+                          {{ semana.1.1 }}
+                        {% elif item.DiaEntregas == 2 %}
+                          {{ semana.2.1 }}
+                        {% elif item.DiaEntregas == 3 %}
+                          {{ semana.3.1 }}
+                          {% elif item.DiaEntregas == 4 %}
+                          {{ semana.4.1 }}
+                        {% elif item.DiaEntregas == 5 %}
+                          {{ semana.5.1 }}
+                        {% elif item.DiaEntregas == 6 %}
+                          {{ semana.6.1 }}
+                        {% else %}
+                          Valor no encontrado
+                        {% endif %}
+                      </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="header">
+        <h2 class="title">Reporte Articulos de Habitaciones</h2>   
+    </div>
+
+    <div class="table-container">
+        <h3>Cantidad de articulos de habitaciones: {{ count_art_hab }}</h3>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in art_habitaciones %}
+                <tr>
+                    <td>{{ item.Codigo }}</td>
+                    <td>{{ item.Producto }}</td>
+                    <td>{{ item.Cantidad }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="header">
+        <h2 class="title">Reporte Articulos de Limpieza</h2>   
+    </div>
+
+    <div class="table-container">
+        <h3>Cantidad Articulos de Limpieza: {{ count_art_limp }}</h3>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Unidad</th>
+                    <th>Proveedor</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in art_limpieza %}
+                <tr>
+                    <td>{{ item.Codigo }}</td>
+                    <td>{{ item.Producto }}</td>
+                    <td>{{ item.Cantidad }}</td>
+                    <td>
+                        {% if item.Unidad == 0 %}
+                          {{ limpieza.0.1 }}
+                        {% elif item.Unidad == 1 %}
+                          {{ limpieza.1.1 }}
+                        {% elif item.Unidad == 2 %}
+                          {{ limpieza.2.1 }}
+                        {% elif item.Unidad == 3 %}
+                          {{ limpieza.3.1 }}
+                        {% else %}
+                          Valor no encontrado
+                        {% endif %}
+                      </td>
+                    <td>{{ item.Proveedor }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="header">
+        <h2 class="title">Reporte de Stock</h2>   
+    </div>
+
+    <div class="table-container">
+        <h3>Cantidad de stock: {{ count_stock }}</h3>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Unidad</th>
+                    <th>Tipo</th>
+                    <th>Precio</th>
+                    <th>Proveedor</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in stock %}
+                <tr>
+                    <td>{{ item.Codigo }}</td>
+                    <td>{{ item.Producto }}</td>
+                    <td>{{ item.Cantidad }}</td>
+                    <td>  {% if item.Unidad == 0 %}
+                        {{ unidad.0.1 }}
+                      {% elif item.Unidad == 1 %}
+                        {{ unidad.1.1 }}
+                      {% elif item.Unidad == 2 %}
+                        {{ unidad.2.1 }}
+                      {% elif item.Unidad == 3 %}
+                        {{ unidad.3.1 }}
+                      {% else %}
+                        Valor no encontrado
+                      {% endif %}</td>
+                      <td>  {% if item.Tipo == 0 %}
+                        {{ type.0.1 }}
+                      {% elif item.Tipo == 1 %}
+                        {{ type.1.1 }}
+                      {% elif item.Tipo == 2 %}
+                        {{ type.2.1 }}
+                      {% elif item.Tipo == 3 %}
+                        {{ type.3.1 }}
+                        {% elif item.Tipo == 4 %}
+                        {{ type.4.1 }}
+                      {% elif item.Tipo == 5 %}
+                        {{ type.5.1 }}
+                      {% elif item.Tipo == 6 %}
+                        {{ type.6.1 }}
+                      {% else %}
+                        Valor no encontrado
+                      {% endif %}</td>
+                    <td>{{ item.Precio }}</td>
+                    <td>{{ item.Proveedor }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+

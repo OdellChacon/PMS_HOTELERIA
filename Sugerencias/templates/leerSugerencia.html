@@ -1,0 +1,22 @@
+{% extends 'resources/menu.html' %}
+
+{% load crispy_forms_filters %} 
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="page-wrapper bg-blue p-t-100 p-b-100 font-robo">
+    <div class="wrapper wrapper--w680">
+        <div class="card card-1">
+            <div class="card-heading"></div>
+            <div class="card-body">
+                <h2 class="title">Libro de Sugerencias</h2>
+                <form action="" method="post" readonly>
+                    {% csrf_token %}
+                    {{sugerencia | crispy}}
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

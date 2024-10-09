@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <title>reservas</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/est.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/est_barra.css' %}">
+    <style> body{
+      background-color:#FDEBD0 ;
+      }</style>
+</head>
+<body>
+ 
+ 
+<div class="grid-layout">
+  <div class="caja c1"> 
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Hotel las lomas</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="#">Bienvenid@ {{ user.username }}</a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" href="/reservas/codigo_reserva">mis reservaciones</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">cerrar sesion</a>
+          </li>
+        
+        </ul>
+      </div>
+    </nav>
+
+  </div> 
+  
+  
+  
+  
+    <h2 class="titulo"><b> Nuestras Habitaciones <b/> </h2>
+      
+      
+     {% for habi in habi %} 
+     
+     {% if habi.id_categoria == cate.id_categoria %}
+     {% if habi.estatus_habi < 2 %}
+     <div class="card"  style="width: 20rem; margin:10px; float: left"  >
+      <img class="card-img-top" src="{{habi.imagen.url}}" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">{{ habi.id_categoria.nombre_c }}</h5>
+        <p class="card-text">${{ habi.id_categoria.precioxdia }} <br>#{{ habi.numero_habitacion }}    {{ habi.id_categoria.categoria }}</p>
+        <a href="{% url 'vista3' habi.id_num_habitaciones %}" class="btn btn-primary">Continuar</a>
+        
+      </div>
+     
+      <br>
+    </div>
+    {% endif %}
+{% endif %}
+&nbsp
+{% endfor %}
+
+  
+  
+
+{% else %}
+<li class="nav-item">
+  <a class="nav-link" href="{% url 'login' %}">Iniciar Sesion</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="{% url 'register' %}">Registrarse</a>
+</li>
+{% endif %}
+ 
+</body>
+</html>

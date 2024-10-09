@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<div id="page-wrapper" >
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+             <h2 class="glyphicon glyphicon-ok"> Categorias</h2>               
+            </div>
+        </div>
+         <hr />
+       <div class="row">
+        <div class="col-md-12">
+           
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h4 class="glyphicon glyphicon-plus"> Agregar una nueva categoria</h4>
+                            <form role="form" action="{% url 'registrarCategoria' %}" method="post" enctype="multipart/form-data">
+                             <div>
+                                {% csrf_token %}
+                               
+                                <div class="form-group">
+                                    <label>Nombre:</label>
+                                    <input id="nombre_c" name="nombre_c" class="form-control" minlength="4" maxlength="20" required />
+                                </div> 
+                                <div class="form-group">
+                                    <label>Descripcion:</label>
+                                    <input  id="categoria" name="categoria" class="form-control" maxlength="200" required />
+                                </div>
+                                <div class="form-group">
+                                    <label>Precio</label>
+                                    <input type="number" step="any" id="precioxdia" name="precioxdia" class="form-control"  required />
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label>Capacidad de personas:</label>
+                                    <input id="can_pers" name="can_pers" class="form-control" type="number" required />
+                                </div> 
+                                <br/>
+                            </div>
+                        
+                        
+                        <center><button type="submit" class="btn btn-primary">Registrar Categoria</button></center>
+                            </form>
+                            
+                    </div>
+                     
+                    <div class="col-md-8">
+                      
+                    
+                        <br>
+                        
+                        <div class="table-responsive">
+                            <div class="panel-heading" style="background: #6495ed ; color: #ffffff; text-align: right;">
+                                 <button type="button" class="btn btn-success"><a class="glyphicon glyphicon-trash" href="/habitaciones/papelerac/" style="text-decoration: none ; color: #ffffff;"> Papelera</a></button>
+            
+                            </div>
+                            <table style="width:100%" class="table table-striped table-bordered table-hover">
+                                <thead>
+                                    <tr bgcolor="#DCDCDC">
+                                        <th><h7 class="glyphicon glyphicon-chevron-down"> </h7></th>
+                                        <th>Nombre</th>
+                                        <th>Descripcion</th>
+                                        <th>Precio</th>
+                                        <th>cap</th>
+                                        
+                                        
+                                        
+                                        <th>Borrar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for c in cat %}
+                                        <tr bgcolor="#FFFACD">
+                                        <td style="visibility: hidden">{{c.id}}</td>
+                                        <td >{{c.nombre_c}}</td>
+                                        <td  height=70%>{{c.categoria}}</td>
+                                        <td height=20%>${{c.precioxdia}}</td>
+                                        <td height=20%>{{c.can_pers}}</td>
+                                        
+                                        
+                                        
+                                        <td><div>
+                                          
+                                            <a class="glyphicon glyphicon-ban-circle" href="/habitaciones/quitar_categoria/{{c.id}}"></a></button>
+                                        </div></td>
+                                       </tr> 
+                                    {% endfor %}
+                                   
+                                </tbody>
+                                
+                            </table>
+                            
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+
+
+                               

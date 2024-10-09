@@ -1,0 +1,89 @@
+{% extends 'layouts/navbar.html' %}
+
+{% block content %}
+<div id="page-wrapper" >
+    {% if messages %}
+        {% for m in messages %}
+            <div class="alert alert-success" role="alert">
+                {{m}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">X</button>
+            </div>         
+        {% endfor %}
+    {% endif %} 
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+             <h2>Gestion <small>Articulos de Limpieza</small></h2>                  
+            </div>
+        </div>
+         <hr />
+    
+    <div class="row">
+        
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading" style="background: #6495ed ; color: #ffffff; text-align: right;">
+                    Agregar Producto <button type="button" class="btn btn-success"><a href="{% url 'addLimpieza' %}" style="text-decoration: none; color: #ffffff ;">+</a></button>
+
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Codigo</th>
+                                    <th>Producto</th>
+                                    <th>Cantidad</th>
+                                    <th>Unidad</th>
+                                    <th>Status</th>
+                                    <th>Proveedor</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for c in entity %}
+                                <tr>
+                                    <td>{{c.Codigo}}</td>
+                                    <td>{{c.Producto.title}}</td>
+                                    <td>{{c.Cantidad}}</td>
+                                    <td>
+                                        {% if c.Unidad == 0 %}
+                                            <p>G</p>
+                                        {% elif c.Unidad == 1 %}
+                                            <p>KG</p>
+                                        {% elif c.Unidad == 2 %}
+                                            <p>LT</p>
+                                        {% elif c.Unidad == 3 %}
+                                            <p>Articulo Fisico</p>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if c.Cantidad >= 50 %}
+                                            <p class="alert alert-success">Disponible</p>
+                                        {% elif c.Cantidad >= 1 %}
+                                            <p class="alert alert-warning">Reabastecer</p>
+                                        {% else %}
+                                            <p class="alert alert-danger">Agotado</p>
+                                        {% endif %}
+                                    </td>
+                                    <td>{{c.Proveedor}}</td>
+                                    <td><div>
+                                        <button type="button" class="btn btn-warning"><a href="{% url 'modificarLimp' c.id %}" style="text-decoration: none; color: #ffffff ;"><i class="fas fa-sync-alt"></i></a></button>
+                                        <button type="button" class="btn btn-danger btnEliminacion"><a href="{% url 'eliminarLimp' c.id %}" style="text-decoration: none; color: #ffffff ;"><i class="fas fa-trash-alt"></i></a></button>
+                                    </div></td>
+                                   </tr> 
+                                {% endfor %}
+                                
+                            </tbody>
+                        </table>
+                        <div>
+                            <center>{% include 'paginator.html' %}</center>
+                        </div>
+                    </div><hr>
+                </div>
+            </div>
+        </div>
+    </div>       
+</div>
+</div>
+{% endblock %}

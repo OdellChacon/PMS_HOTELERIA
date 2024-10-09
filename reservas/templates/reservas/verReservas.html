@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<div id="page-wrapper" >
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+             <h2 class="glyphicon glyphicon-ok"> Reservas</h2>               
+            </div>
+        </div>
+         <hr />
+       <div class="row">
+        <div class="col-md-12">
+           
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h4 class="glyphicon glyphicon-search"> Buscar Reserva</h4>
+                            <hr>
+                            <form role="form" action="{% url 'buscar' %}" method="post" enctype="multipart/form-data">
+                             <div>
+                                {% csrf_token %}
+                               
+                                <div class="form-group">
+                                    <label>Codigo de reserva:</label>
+                                    
+                                    <select class="form-select" name="idr" aria-label="Default select example" required> 
+        
+                                        {% for cod in res1 %}
+                                      
+                                      <option value="{{cod.id}}" >{{cod.id}}</option>
+                                    {% endfor %} 
+                                    </select>
+                                    
+                                </div> 
+                               
+                                <br/>
+                            </div>
+                        
+                        
+                        <center><button type="submit" class="btn btn-primary">Buscar</button></center>
+                            </form>
+                            
+                    </div>
+                     
+                    <div class="col-md-8">
+                      
+                        <div class="table-responsive">
+                            <div class="panel-heading" style="background: #6495ed ; color: #ffffff; text-align: right;">
+                                 
+                                
+                                 <button type="button" class="btn btn-danger"><a class="glyphicon glyphicon-calendar" ></a></button>
+                            </div>
+                            <table style="width:100%" class="table  table-bordered table-hover">
+                                <thead>
+                                    <tr bgcolor="#DCDCDC">
+                                        
+                                        <th>Codigo</th>
+                                        <th>Entrada</th>
+                                        <th>Salida</th>
+                                        <th>Habitacion</th>
+                                        <th>Total</th>
+                                        <th>Solicitud</th>
+                                        <th>Estatus</th>
+                                        <th>Detalles</th>
+                                        
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for x in res %}
+                                    
+                                        <tr bgcolor="#FFFACD">
+                                        <td>{{x.id}}</td>
+                                        {% if x.id_datos_reserva.f_entrada <= hoy %}
+                                        <td bgcolor="#E96682">{{x.id_datos_reserva.f_entrada}}</td>
+                                        
+
+                                        {% else %}
+                                        <td>{{x.id_datos_reserva.f_entrada}}</td>
+                                        {% endif %}
+                                        <td  height=70%>{{x.id_datos_reserva.f_salida}}</td>
+                                        <td height=20%>#{{x.id_num_habitaciones.numero_habitacion}} {{x.id_num_habitaciones.id_categoria.nombre_c}}</td>
+                                        <td height=20%>${{x.tarifa_pago}}</td>
+                                        <td height=20%>{{x.fecha_reserva}}</td>
+                                        {% if x.estatus_reservacion >= 1 %}
+                                         <td><button type="button" class="btn btn-warning">En espera</button></td>
+                                        {% else %}
+                                        <td>
+                                        <button type="button" class="btn btn-success">Activa</button>
+                                       {% endif %}
+                                        </td>
+                                        <td><div>
+                                          
+                                            <a class="glyphicon glyphicon-zoom-in" href="/reservas/detalles/{{x.id}}">Ver</a></button>
+                                        </div></td>
+                                        
+                                        
+                                        
+                                       </tr> 
+                                       
+                                    {% endfor %}
+                                   
+                                </tbody>
+                                
+                            </table>
+                            
+                        </div>
+                  
+                        <br>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+</div>
+
+{% endblock %}

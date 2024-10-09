@@ -1,0 +1,56 @@
+{% extends 'layouts/menu.html' %}
+
+{% load static %}
+
+{% block team_7 %}
+<style>
+  .list-group-item{
+    padding: 10px 20px;
+  }
+
+  .list-group-item i {
+    margin-right: 10px;
+  }
+
+  .list-group-item a {
+    text-decoration: none;
+  }
+</style>
+<div id="page-wrapper">
+  <div id="page-inner">
+      <h1>Reportes</h1>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <i class="fa fa-book fa-2x"></i>
+          <a href="/dashboard/reportes/reservas">Reporte de Reservaciones</a>
+      </li>
+          <li class="list-group-item">
+              <i class="fa fa-book fa-2x"></i>
+              <a href="/dashboard/reportes/empleados">Reporte Empleados</a>
+          </li>
+          <li class="list-group-item">
+              <i class="fa fa-book fa-2x"></i>
+              <a href="/dashboard/reportes/inventario">Reporte Inventario</a>
+          </li>
+          <li class="list-group-item">
+              <i class="fa fa-book fa-2x"></i>
+              <a href="/dashboard/reportes/cliente">Reporte Clientes</a>
+          </li>
+          <li class="list-group-item">
+              <i class="fa fa-book fa-2x"></i>
+              <a href="/dashboard/reportes/huesped">Reporte Huéspedes</a>
+          </li>
+
+          <li class="list-group-item">
+              <i class="fa fa-book fa-2x"></i>
+              <a href="/dashboard/reportes/sugerencia">Reporte de Sugerencias</a>
+          </li>
+          <li class="list-group-item">
+              <i class="fa fa-chart-bar fa-2x"></i>
+              <a href="/dashboard/reportes/charts">Gráficos</a>
+          </li>
+      </ul>
+  </div>
+</div>
+
+{% endblock %}

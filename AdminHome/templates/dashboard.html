@@ -1,0 +1,209 @@
+{% extends 'layouts/menu.html' %}
+
+{% load static %}
+
+{% block team_7 %}
+        <div id="page-wrapper" >
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                     <h2>Hotel Las Lomas - <small>Dashboard</small></h2>   
+                    </div>
+                </div>              
+                 <!-- Habitaciones  -->
+                  <hr />
+                  <h4>Habitaciones <small>[Ver mas]</small></h3>
+                <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-6">           
+                    <div class="main-temp-back">
+                        <div class="panel-body">
+                          <div class="row">
+                            <div class="col-xs-6"> <i class="fa fa-door-open fa-3x"></i> Hab. #000 </div>
+                            <div class="col-xs-6">
+                              <div class="text-temp"> <i class="fa fa-check-circle"></i></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6">           
+                    <div class="main-temp-back-ban">
+                        <div class="panel-body">
+                          <div class="row">
+                            <div class="col-xs-6"> <i class="fa fa-door-closed fa-3x"></i> Hab. #001 </div>
+                            <div class="col-xs-6">
+                              <div class="text-temp"><i class="fa fa-ban"></i></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                 </div>
+                <div class="col-md-3 col-sm-6 col-xs-6">           
+                    <div class="main-temp-back-step">
+                        <div class="panel-body">
+                            <div class="row">
+                            <div class="col-xs-6"> <i class="fa fa-door-open fa-3x"></i> Hab.  </div>
+                            <div class="col-xs-6">
+                                <div class="text-temp"><i class="fa fa-clock"></i></div>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6">           
+                    <div class="main-temp-back-ban">
+                        <div class="panel-body">
+                          <div class="row">
+                            <div class="col-xs-6"> <i class="fa fa-door-closed fa-3x"></i> Hab. #003 </div>
+                            <div class="col-xs-6">
+                              <div class="text-temp"><i class="fa fa-ban"></i></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+
+            </div>
+                 <!-- Eventos -->
+                <hr />        
+                <h4>Eventos</h4>        
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 col-xs-12">           
+            <div class="panel panel-back noti-box">
+                <span class="icon-box bg-color-blue">
+                    <i class="fa fa-birthday-cake"></i>
+                </span>
+                <div class="text-box" >
+                    <p class="main-text"><strong>Evento: XXX</strong> </p>
+                    <p class="text-muted">Cliente: [Nombre Cliente]</p>
+                    <p class="text-muted">Tiempo restante: 30 mins</p>
+                    <hr />
+                    <p class="text-muted">
+                          <span class="text-muted color-bottom-txt"><i class="fa fa-edit"></i>
+                               <strong>Detalles Evento: </strong> Lorem ipsum dolor sit amet consectetur.
+                               </span>
+                    </p>
+                </div>
+             </div>
+             </div>
+                    
+                    
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="panel back-dash">
+                               <center><strong> &nbsp; Piscina</strong><br>
+                               <small><i class="fa fa-swimming-pool fa-3x"></i></small></center>
+                             <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing sit ametsit amet elit ftr. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="panel back-dash-2">
+                               <center><strong> &nbsp; Cumpleaños</strong><br>
+                               <small><i class="fa fa-birthday-cake fa-3x"></i></small></center>
+                             <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing sit ametsit amet elit ftr. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                        </div>
+                    </div>
+                        
+        </div>
+                 <!-- Administracion  -->
+                 <hr>
+                 <h4>Administracion</h4>
+                <div class="row"> 
+                    
+                      
+                               <div class="col-md-9 col-sm-12 col-xs-12">                     
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Ingresos Mensuales
+                        </div>
+                        <div class="panel-body">
+                            <div id="morris-bar-chart"></div>
+                        </div>
+                    </div>            
+                </div>
+                    <div class="col-md-3 col-sm-12 col-xs-12">                       
+                    <div class="panel panel-primary text-center no-boder bg-color-green">
+                        <a href="/sugerencias" style="text-decoration: none; color: #ffffff;">
+                        <div class="panel-body">
+                            <i class="fa fa-id-badge fa-5x"></i>
+                            <h3>Sugerencias</h3>
+                        </div>
+                        <div class="panel-footer back-footer-green">
+                          Leer
+                        </div>
+                        </a>
+                    </div>
+                    <div class="panel panel-primary text-center no-boder bg-color-green">
+                        <a href="/inventario" style="text-decoration: none; color: #ffffff;">
+                        <div class="panel-body">
+                            <i class="fa fa-book fa-5x"></i>
+                            <h3>Inventario</h3>
+                        </div></a>
+                        <div class="panel-footer back-footer-green">
+                            Administrar Recursos
+                        </div>
+                    </div>                         
+                        </div>
+                
+           </div>
+                <div class="row" >
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+  <div class="panel panel-primary text-center no-boder bg-color-green">
+                        <a href="/empleados" style="text-decoration: none; color: #ffffff;">
+                            <div class="panel-body">
+                                <i class="fa fa-id-card fa-5x"></i>
+                                <h4>Empleados</h4>
+                                 <h5>Agregar</h5>
+                            </div>
+                        </a>
+                        <a href="/restaurante" style="text-decoration: none; color: #ffffff;">
+                        <div class="panel-footer back-footer-green">
+                             <i class="fa fa-apple-alt fa-5x"></i>
+                             <h4>Restaurante</h4>
+                             <h5>Administrar Menu</h5>
+                            
+                        </div>
+                        </a>
+                    </div>
+                    </div>
+                    <div class="col-md-9 col-sm-12 col-xs-12">
+               
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                           Empleados
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Nombre</th>
+                                            <th>Apellido</th>
+                                            <th>Cargo</th>
+                                             <th>cod_empleado</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for e in empleado %}
+                                        <tr>
+                                            <td>{{forloop.counter}} </td>
+                                            <td>{{e.nombre.title}}</td>
+                                            <td>{{e.apellido.title}}</td>
+                                            <td>{{e.cargo.title}}</td>
+                                            <td>{{e.codigo}}</td>
+                                        </tr>
+                                    {% endfor %}                                       
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    </div>
+                </div>            
+                </div>     
+    </div>
+            </div>
+        </div>
+
+{% endblock %}

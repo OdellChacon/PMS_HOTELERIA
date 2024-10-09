@@ -1,0 +1,112 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Hotel Las Lomas - Eventos</title>
+        <link href="{% static 'styles/bootstrap.css' %}" rel="stylesheet" />
+        <link href="{% static 'styles/font-awesome.css' %}" rel="stylesheet" />
+        <link href="{% static 'js/morris/morris-0.4.3.min.css' %}" rel="stylesheet" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+        <link href="{% static 'styles/custom.css' %}" rel="stylesheet" />
+        <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/x-icon">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    </head>
+    <body>
+
+        <div id="wrapper">
+            <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0; background: #6495ed;">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/dashboard">Hotel Las Lomas</a> 
+                </div>
+            </nav>   
+            <nav class="navbar-default navbar-side" role="navigation">
+                <div class="sidebar-collapse">
+                    <ul class="nav" id="main-menu">
+                    <li class="text-center">
+                        <img src="{% static 'img/user-286.svg' %}" class="user-image img-responsive"/>
+                        </li>
+                    
+                        
+                        <li>
+                            <a href="/dashboard"><i class="fa fa-chart-bar fa-2x"></i> Dashboard</a>
+                        </li>
+                        <li>
+                            <a  href="#"><i class="fa fa-bed fa-2x"></i> Habitaciones</a>
+                        </li>
+                        <li>
+                            <a class="active-menu" href="#"><i class="fa fa-calendar fa-2x"></i> Eventos</a>
+                        </li>
+                          <li  >
+                            <a   href="/inventario"><i class="fa fa-book fa-2x"></i> Gestion</a>
+                        </li>
+                        <li  >
+                            <a  href="/restaurante"><i class="fa fa-concierge-bell fa-2x"></i> Restaurante </a>
+                        </li>				
+                        <li  >
+                            <a   href="#"><i class="fa fa-bar-chart-o fa-2x"></i> Facturas</a>
+                        </li>	                             
+                        <li>
+                            <a href="#"><i class="fa fa-user fa-2x"></i>Huespedes</a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/huespedes/newCliente/"><i class="fa fa-address-book"></i> Agregar Huesped</a>
+                                </li>
+                                <li>
+                                    <a href="/huespedes"><i class="fa fa-address-card"></i> Ver Huesped</a>
+                                </li>
+                            </ul>
+                          </li>  
+                          <li>
+                            <a href="#"><i class="fa fa-user-tie fa-2x"></i>Empleados</a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/empleados"><i class="fa fa-address-book"></i> Agregar Empleado</a>
+                                </li>
+                                <li>
+                                    <a href="/empleados/vistaEmpleado/"><i class="fa fa-address-card"></i> Ver Empleados</a>
+                                </li>
+                            </ul>
+                          </li> 
+                          <li>
+                            <a href="#"><i class="fa fa-wrench fa-2x"></i> Configuraciones</a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="#">Texto #4</a>
+                                </li>
+                                <li>
+                                    <a href="#">Solucion de problemas</a>
+                                </li>
+                                <li>
+                                    <a href="/cerrar_sesion">Log Out</a>
+                                </li>
+                            </ul>
+                          </li> 	
+                    </ul>
+                   
+                </div>
+                
+            </nav> 
+        {% block content %}
+        {% endblock %}
+                
+        <script src="{% static 'js/Alertas.js' %}"></script>
+        <script src="{% static 'js/jquery-1.10.2.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'js/jquery.metisMenu.js' %}"></script>
+        <script src="{% static 'js/morris/raphael-2.1.0.min.js' %}"></script>
+        <script src="{% static 'js/morris/morris.js' %}"></script>
+        <script src="{% static 'js/custom.js' %}"></script>
+        <script src="{% static 'js/Eliminar.js' %}"></script>
+        
+       
+    </body>
+</html>

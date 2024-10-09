@@ -1,0 +1,164 @@
+{% extends 'layouts/navbar.html' %}
+{% load static %}
+
+{% block content %}
+<div id="page-wrapper" >
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+             <h2>Hotel Las Lomas <small>Inventario</small></h2>                  
+            </div>
+        </div>
+         <hr />
+       
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading" style="background: #6495ed ; color: #ffffff;">
+                    Ingredientes <i class="fa fa-apple-alt fa-1x"></i> 
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Producto</th>
+                                    <th>Cantidad</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for c in ingredientes %}
+                                    <tr>
+                                    <td>{{c.Producto.title}}</td>
+                                    <td>{{c.Cantidad}}</td>
+                                        {% if c.Cantidad >= 50 %}
+                                            <td class="alert alert-success">Disponible</td>
+                                        {% elif c.Cantidad >= 1 %}
+                                            <td class="alert alert-warning">Reabastecer</td>
+                                        {% else %}
+                                            <td class="alert alert-danger">Agotado</td>
+                                        {% endif %}
+                                   </tr> 
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div><hr>
+                        <center><button type="button" class="btn btn-success" style="background: #6495ed; border: 2px #6495ed solid;"><a href="ingredientes/" style="text-decoration: none; color:#ffffff;">Ver Mas</a></button></center>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading"  style="background: #64ed64 ; color: #000000;">
+                    Articulos Limpieza <i class="fa fa-bath fa-1x"></i>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Producto</th>
+                                    <th>Cantidad</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for clean in art  %}
+                                <tr>
+                                    <td>{{clean.Producto}}</td>
+                                    <td>{{clean.Cantidad}}</td>
+                                    {% if clean.Cantidad >= 50 %}
+                                    <td class="alert alert-success">Disponible</td>
+                                {% elif clean.Cantidad >= 1 %}
+                                    <td class="alert alert-warning">Reabastecer</td>
+                                {% else %}
+                                    <td class="alert alert-danger">Agotado</td>
+                                {% endif %}
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <hr>
+                        <center><button type="button" class="btn btn-success" style="background: #64ed64 ; border: 2xp #64ed64; color: #000000;"><a href="limpieza/" style="text-decoration: none; color:#000000;">Ver Mas</a></button></center>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading" style="background: #ed6464 ; color: #ffffff;">
+                    Articulos Habitaciones <i class="fa fa-socks fa-1x"></i>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Codigo</th>
+                                    <th>Producto</th>
+                                    <th>Cantidad</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for r in room %}
+                                <tr>
+                                    <td>{{r.Codigo}}</td>
+                                    <td>{{r.Producto}}</td>
+                                    <td>{{r.Cantidad}}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <hr>
+                    <center><button type="button" class="btn btn-success" style="background: #ed6464 ; border: 2px #ed6464 solid; color: #ffffff;"><a href="habitaciones/" style="text-decoration: none; color:#ffffff;">Ver Mas</a></button></center>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="background: #f7d648 ; color: #000000;">
+                        Proveedores <i class="fa fa-truck fa-1x"></i>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Proveedor</th>
+                                        <th>Contacto</th>
+                                        <th>Telefono</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for p in proveedor %}
+                                    <tr>
+                                        <td>{{forloop.counter}}</td>
+                                        <td>{{p.Proveedor}}</td>
+                                        <td>{{p.NombreContacto}}</td>
+                                        <td>{{p.Telefono}}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <hr>
+                        <center><button type="button" class="btn btn-success" style="background: #f7d648; border: 2px #f7d648 solid; color: #000000;"><a href="proveedores/" style="text-decoration: none; color:#000000;">Ver Mas</a></button></center>
+                    </div>
+                </div>
+    
+            </div>
+    </div>
+
+</div>
+       
+</div>
+</div>
+
+{% endblock %}

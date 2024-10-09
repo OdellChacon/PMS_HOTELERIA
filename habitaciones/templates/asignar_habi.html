@@ -1,0 +1,226 @@
+{% extends 'base.html' %}
+{% block body %}
+<div id="page-wrapper" >
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+             <h2 class="glyphicon glyphicon-ok"> Habitaciones</h2>               
+            </div>
+        </div>
+         <hr />
+       <div class="row">
+        <div class="col-md-12">
+           
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h4 class="glyphicon glyphicon-saved"> Asignar Habitacion</h4>
+                            <form role="form" action="{% url 'asignarh' %}" method="post"  enctype="multipart/form-data">
+                             <div>
+                                {% csrf_token %}
+                               
+                                <div class="form-group">
+                                    
+                                </div> 
+                                <div class="form-group">
+                                    <label>Categoria:</label>
+                                  <select class="form-select" name="categoria" aria-label="Default select example"> 
+                                      {% for h in h %}
+                                      <option value="{{h.id}}">{{h.nombre_c}}</option>
+                                    {% endfor %} 
+                                   </select>
+                                </div>
+                                <div class="form-group">
+                                  <label>Imagen</label>
+                                  <input type="file" id="foto" name="foto" class="form-control"   required/>
+                              </div>
+                                <div class="form-group">
+                                    <label>Numero</label>
+                                    <input type="number"  id="nhabi" name="nhabi" class="form-control"  required min="1" pattern="^[0-9]+" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Estatus</label>
+                                    <select class="form-select" name="estatus" aria-label="Default select example"> 
+                                        <option value="1">disponible</option>
+                                        <option value="2">ocupada/mantenimiento</option>
+                                        <option value="3">reservada</option>
+                                      
+                                     </select>
+                                </div> 
+                                
+                            </div>
+                        
+                        
+                        <center><button type="submit" class="btn btn-primary">Asignar</button></center>
+                            </form>
+                    </div>
+                    <div class="col-md-8">
+                        <h3><br></h3>
+                        <div class="row">
+                            <div class="col-md-3 col-sm-6 col-xs-6">           
+                                <div class="main-temp-back">
+                                    <div class="panel-body">
+                                      <div class="row">
+                                        <div class="col-xs-6"> <i class="fa fa-door-open fa-3x"></i>Hab. #{{ha1}}</a> </div>
+                                        <div class="col-xs-6">
+                                          <div class="text-temp"> <i class="fa fa-check-circle"></i></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                            </div>
+                        <div class="col-md-3 col-sm-6 col-xs-6">           
+                            <div class="main-temp-back-ban">
+                                <div class="panel-body">
+                                  <div class="row">
+                                    <div class="col-xs-6"> <i class="fa fa-door-closed fa-3x"></i> Hab. #{{ha2}}</a></div>
+                                    <div class="col-xs-6">
+                                      <div class="text-temp"><i class="fa fa-ban"></i></div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                         </div>
+                        <div class="col-md-3 col-sm-6 col-xs-6">           
+                            <div class="main-temp-back-step">
+                                <div class="panel-body">
+                                    <div class="row">
+                                    <div class="col-xs-6"> <i class="fa fa-door-open fa-3x"></i> Hab. #{{ha3}}</a></div>
+                                    <div class="col-xs-6">
+                                        <div class="text-temp"><i class="fa fa-clock"></i></div>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+                        </div>
+                      
+        
+                    </div>
+                      
+                        
+                        
+                    </div> 
+                </div> 
+            </div>
+            <div class="panel-heading" style="background: #FFEFD5 ; color: #FFEFD5; text-align: right;">
+              <button type="button" class="btn btn-primary"><a class="glyphicon glyphicon-folder-close" href="/habitaciones/papelerah/" style="text-decoration: none ; color: #ffffff;"> HAB.Retiradas</a></button>
+
+         </div>
+            
+        </div>
+        <div class="col-md-6">
+            <table class="table table-sm">
+              <div class="panel-heading" style="background: #F0FFF0 ; color: #ffffff; text-align: right;">
+                <a class="glyphicon glyphicon-ok"  style="text-decoration: none ; color: #000000;"> Disponibles</a>
+
+           </div>
+            <thead>
+              <tr bgcolor="green">
+                <th scope="col">Codigo</th>
+                <th scope="col">numero</th>
+                <th scope="col">Categoria</th>
+                <th scope="col">imagen</th>
+                <th scope="col">Mantenimiento</th>
+                <th scope="col">Retirar</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for a1 in a1 %}
+              <tr>
+              <td >{{a1.id_num_habitaciones}}</td>
+              <td >{{a1.numero_habitacion}}</td>
+              {% if a1.id_categoria.estatus_categ < 1 %}
+              <td bgcolor="darkgrey" >{{a1.id_categoria.nombre_c}}</td>
+              {% else %}
+            <td>{{a1.id_categoria.nombre_c}}</td>
+            {% endif %}
+              <td><img src="{{a1.imagen.url}}"width="65" height="65"></td>
+              <td><div>
+                <a class="glyphicon glyphicon-wrench" href="/habitaciones/cambiar_h/{{a1.id_num_habitaciones}}"></a></button>
+              </div></td>
+          <td><div>
+                <a class="glyphicon glyphicon-ban-circle" href="/habitaciones/quitar_h/{{a1.id_num_habitaciones}}"></a></button>
+              </div></td>
+             </tr> 
+          {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <div class="col-md-6">
+          <div class="panel-heading" style="background: #F0FFF0 ; color: #ffffff; text-align: right;">
+            <a class="glyphicon glyphicon-ban-circle"  style="text-decoration: none ; color: #000000;"> Mantenimiento</a>
+
+       </div>
+          <table class="table table-sm">
+          <thead>
+            <tr bgcolor="red">
+              
+              <th scope="col">Codigo</th>
+              <th scope="col">numero</th>
+              <th scope="col">Categoria</th>
+              <th scope="col">imagen</th>
+              <th scope="col">Retirar</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for a2 in a2 %}
+              <tr>
+              <td >{{a2.id_num_habitaciones}}</td>
+              <td >{{a2.numero_habitacion}}</td>
+              {% if a2.id_categoria.estatus_categ < 1 %}
+              <td bgcolor="darkgrey" >{{a2.id_categoria.nombre_c}}</td>
+              {% else %}
+            <td>{{a2.id_categoria.nombre_c}}</td>
+            {% endif %}
+            <td><img src="{{a2.imagen.url}}"width="65" height="65"></td>
+          <td><div>
+            
+                <a class="glyphicon glyphicon-ban-circle" href="/habitaciones/quitar_h/{{a2.id_num_habitaciones}}"></a></button>
+              </div></td>
+             </tr> 
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <br><br>
+      <div class="col-md-6">
+        <div class="panel-heading" style="background: #F0FFF0 ; color: #ffffff; text-align: right;">
+          <a class="glyphicon glyphicon-stop"  style="text-decoration: none ; color: #000000;"> Reservadas</a>
+
+     </div>
+        <table class="table table-sm">
+        <thead>
+          <tr bgcolor="yellow">
+            
+            <th scope="col">Codigo</th>
+              <th scope="col">numero</th>
+              <th scope="col">Categoria</th>
+              <th scope="col">imagen</th>
+              
+          </tr>
+        </thead>
+        <tbody>
+          {% for a3 in a3 %}
+              <tr>
+              <td >{{a3.id_num_habitaciones}}</td>
+              <td >{{a3.numero_habitacion}}</td>
+              {% if a3.id_categoria.estatus_categ < 1 %}
+              <td bgcolor="darkgrey" >{{a3.id_categoria.nombre_c}}</td>
+              {% else %}
+            <td>{{a3.id_categoria.nombre_c}}</td>
+            {% endif %}
+            <td><img src="{{a3.imagen.url}}"width="65" height="65"></td> 
+          
+             </tr> 
+          {% endfor %}
+        </tbody>
+      </table> 
+      
+    </div>
+    </div>
+</div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reporte de Clientes</title>
+   
+    <style type="text/css">
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        @page{
+            size: a3;
+            margin: 15px;
+        }
+        .header {
+            display: flex;
+            width: 320px;
+            height: 120px;
+            justify-content: center;
+            align-items: center;
+        }
+        .logo {
+            width: 250px;
+            height: 150px;
+            padding-bottom: 0px;            
+            text-align: center;
+        }
+        .table-container {
+            margin: 20px auto;
+            width: 80%;
+        }
+
+        .title {
+            font-size: 24px;
+            text-align: center;
+            padding: 0;
+            margin: 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th {
+            background-color: #F96E01;
+            color: #fff;
+            text-align: center;
+            padding: 8px;
+        }
+
+        td {
+            padding: 4px 8px 4px 8px;
+            text-align: center;
+        }
+        .footer {
+            background-color: #f2f2f2;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="https://i.ibb.co/GpqRVK9/favicon.png" alt="logo" class="logo" />
+        <h2 class="title">Reporte de Clientes</h2>   
+    </div>
+
+    <div class="table-container">
+        <h3>Cantidad de clientes: {{ count }}</h3>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Cedula</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Telefono</th>
+                    <th>Correo</th>
+                    <th>Direccion</th>                
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in cliente %}
+                <tr>
+                    <td>{{ item.Cedula }}</td>
+                    <td>{{ item.Nombre }}</td>
+                    <td>{{ item.Apellido }}</td>
+                    <td>{{ item.Telefono }}</td>
+                    <td>{{ item.Correo }}</td>
+                    <td>{{ item.Direccion }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+

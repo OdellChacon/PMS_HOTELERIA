@@ -1,0 +1,100 @@
+{% extends 'ZK/navbar2.html' %}
+
+{% load humanize %}
+
+{% block content %}
+
+<div id="page-wrapper" >
+        {% if messages %}
+            {% for m in messages %}
+                <div class="alert alert-success" role="alert">
+                    {{m}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">X</button>
+                </div>         
+            {% endfor %}
+        {% endif %} 
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Hotel Las Lomas <small>(Restaurante)</small></h1>                
+            </div>
+        </div>
+         <hr />
+                         
+    <div class="row">
+        <div class="col-md-6 col-sm-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    Menu
+                </div>
+                <div class="panel-body">
+                    <p>Menu del restaurante para comprobar que los platillos se esten cargando correctamente</p>
+                </div>
+                <div class="panel-footer">
+                    <button type="button" class="btn btn-primary btn-lg"><a href="{% url 'restaurante' %}" style="text-decoration: none; color: #ffffff ;">Restaurante</a></button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    Agregar Platillos
+                </div>
+                <div class="panel-body">
+                    <p>Agregar platillos al menu, notificar los ingredientes para alertar a los clientes para evitar reacciones alergicas</p>
+                </div>
+                <div class="panel-footer">
+                    <button type="button" class="btn btn-success btn-lg"><a href="{% url 'comida' %}" style="text-decoration: none; color: #ffffff ;">Agregar</a></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Producto</th>
+                    <th>Tipo</th>
+                    <th>$</th>
+                    <th>Promocion</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for c in entity %}
+                <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{c.Producto.title}}</td>
+                    {% if c.TipoProducto == 0 %}
+                        <td style="background: rgb(111, 204, 111); color: #ffff ;"><strong>Desayuno</strong></td>
+                    {% elif c.TipoProducto == 1 %}
+                        <td style="background: rgb(255, 255, 95); color: #000 ;"><strong>Almuerzo</strong></td>
+                    {% elif c.TipoProducto == 2 %}
+                        <td style="background: crimson; color: #ffff ;"><strong>Postre</strong></td>
+                    {% elif c.TipoProducto == 3 %}
+                        <td style="background: burlywood; color: #000 ;"><strong>Bebida</strong></td>
+                    {% elif c.TipoProducto == 4 %}
+                        <td style="background: rgb(7, 18, 175); color: #ffff ;"><strong>Cena</strong></td>
+                    {% endif %}
+                <td>{{c.Precio | intcomma}}</td>
+                    {% if c.Promocion == False %}
+                        <td style="background: crimson; color: #ffff ;">No</td>
+                    {% elif c.Promocion == True %}
+                        <td style="background: rgb(111, 204, 111); color: #ffff ;">Si</td>
+                    {% endif %}
+                <td><div>
+                    <button type="button" class="btn btn-warning"><a href="{% url 'update' c.id %}" style="text-decoration: none; color: #ffffff ;"><i class="fas fa-sync-alt"></i></a></button>
+                    <button type="button" class="btn btn-danger btnEliminacion"><a href="{% url 'delete' c.id %}" style="text-decoration: none; color: #ffffff ;"><i class="fas fa-trash-alt"></i></a></button>
+                </div></td>
+               </tr> 
+            {% endfor %}
+        </tbody>
+    </table>
+    <div>
+        <center>{% include 'paginator.html' %}</center>
+    </div>
+    </div><hr>
+</div>
+</div>
+{% endblock %}

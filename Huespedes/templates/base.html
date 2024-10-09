@@ -1,0 +1,38 @@
+{% extends 'layouts/menu.html' %}
+
+{% load static %}
+
+{% block team_7 %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title></title>
+        <link href="{% static 'styles/bootstrap.css' %}" rel="stylesheet" />
+        <link href="{% static 'styles/font-awesome.css' %}" rel="stylesheet" />
+        <link href="{% static 'js/morris/morris-0.4.3.min.css' %}" rel="stylesheet" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+        <link href="{% static 'styles/custom.css' %}" rel="stylesheet" />
+        <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/x-icon">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    </head>
+    <body>
+
+        {% block body %}
+
+        {% endblock %}
+             
+      <script src="{% static 'js/jquery-1.10.2.js' %}"></script>
+      <script src="{% static 'js/bootstrap.min.js' %}"></script>
+      <script src="{% static 'js/jquery.metisMenu.js' %}"></script>
+      <script src="{% static 'js/morris/raphael-2.1.0.min.js' %}"></script>
+      <script src="{% static 'js/morris/morris.js' %}"></script>
+      <script src="{% static 'js/custom.js' %}"></script>
+      <script src="{% static 'js/gestionHuespedes.js' %}"></script>
+      
+     
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div id="page-wrapper" >
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+             <h2>Actualizar Empleado</h2>                  
+            </div>
+        </div>
+         <hr />
+       <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3>Datos del Empleado</h3>
+                            <br>
+                            <form role="form" action="../editarEmpleado/" method="post">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label>Codigo</label>
+                                    <input id="txtCodigo" name="txtCodigo" class="form-control" value="{{empleado.codigo}}" minlength="8" maxlength="8" />
+                                </div> 
+                                <div class="form-group">
+                                    <label>Nombre</label>
+                                    <input id="txtNombre" name="txtNombre" class="form-control" value="{{empleado.nombre}}" maxlength="20" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Apellido</label>
+                                    <input id="txtApellido" name="txtApellido" class="form-control" value="{{empleado.apellido}}" maxlength="20" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Telefono</label>
+                                    <input id="txtTelefono" name="txtTelefono" class="form-control" value="{{empleado.telefono}}" maxlength="15" />
+                                </div>
+                                <br>
+                            </div>
+                        
+                        <div class="col-md-6">
+                            <br>
+                            <h3><br></h3>
+                                <div class="form-group">
+                                    <label>Correo</label>
+                                    <input id="txtCorreo" name="txtCorreo" class="form-control" value="{{empleado.correo}}" maxlength="50"/>
+                                </div> 
+                                <div class="form-group">
+                                    <label>Direccion</label>
+                                    <input id="txtDireccion" name="txtDireccion" class="form-control" value="{{empleado.direccion}}" maxlength="50"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Cargo</label>
+                                    <select name="txtCargo" id="txtCargo" class="form-control" value="{{empleado.cargo}}">
+                                    <option value="">Selecciona un cargo...</option>
+                                    <option value="Administrador">Administrador</option>
+                                    <option value="Gerente">Gerente</option>
+                                    <option value="Recepcionista">Recepcionista</option>
+                                    <option value="EncargadoCocina">Encargado de Cocina</option>
+                                    <option value="EncargadoLimpieza">Encargado de Limpieza</option>
+                                    <option value="Mantenimiento">Personal de Mantenimiento </option>
+                                </select>
+                                </div>
+                                <div class="form-group">
+                                    <label> Imagen</label>
+                                    <input type="file" class="form-control"/>
+                                </div><br>                            
+                        </div>
+                        <center><button type="submit" class="btn btn-success">Guardar Cambios</button></center>
+                            </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+
+
+{% endblock %}

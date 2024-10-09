@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div id="page-wrapper" >
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+             <h2>Listado de Empleados</h2>                  
+            </div>
+        </div>
+         <hr />
+    
+    <div class="row">
+        
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading" style="background: #6495ed ; color: #ffffff; text-align: right;">
+                    Agregar Empleado <button type="button" class="btn btn-success"><a href="/empleados" style="text-decoration: none ; color: #ffffff;">+</a></button>
+
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Codigo</th>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>Telefono</th>
+                                    <th>Correo</th>
+                                    <th>Direccion</th>
+                                    <th>Cargo</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for c in empleados %}
+                                    <tr>
+                                    <td>{{c.codigo}}</td>
+                                    <td>{{c.nombre.title}}</td>
+                                    <td>{{c.apellido.title}}</td>
+                                    <td>{{c.telefono}}</td>
+                                    <td>{{c.correo}}</td>
+                                    <td>{{c.direccion.title}}</td>
+                                    <td>{{c.cargo.title}}</td>
+                                    <td><div>
+                                        <button type="button" class="btn btn-warning"><a href="/empleados/edicionEmpleado/{{c.codigo}}" style="text-decoration: none ; color: #ffffff;"><i class="fas fa-sync-alt"></i></a></button>
+                                        <button type="button" class="btn btn-danger btnEliminacion"><a href="/empleados/eliminarEmpleado/{{c.codigo}}" style="text-decoration: none ; color: #ffffff;"><i class="fas fa-trash-alt"></i></a></button>
+                                    </div></td>
+                                   </tr> 
+                                {% endfor %}
+                                
+                            </tbody>
+                        </table>
+                    </div><hr>
+                </div>
+            </div>
+        </div>
+    </div>       
+</div>
+</div>
+{% endblock %}

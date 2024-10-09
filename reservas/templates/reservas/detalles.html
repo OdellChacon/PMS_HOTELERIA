@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% block body %}
+<script type="text/javascript">
+    function ConfirmDelete()
+    {
+     var res = confirm("¿esta seguro de eliminar la reserva?");
+        if (res == true)
+        {
+            return true;
+        }
+        else{
+            return false;
+        }
+    }     
+ </script>
+<div id="page-wrapper" >
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+             <h2 class="glyphicon glyphicon-ok"> Reservas</h2>               
+            </div>
+        </div>
+         <hr />
+       <div class="row">
+        <div class="col-md-12">
+           
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    
+                     
+                    <div class="col-md-12">
+                      
+                        <div class="table-responsive">
+                            <div class="panel-heading" style="background: #6495ed ; color: #ffffff; text-align: right;">
+                                {% if res.estatus_reservacion >= 1 %}
+                     <button type="button" class="btn btn-success"><a class="glyphicon glyphicon-arrow-up" href="/reservas/activar/{{res.id}}" style="text-decoration: none ; color: #ffffff;"> Activar</a></button>
+                               {% else %} 
+                               <button type="button" class="btn btn-success"><a class="glyphicon glyphicon-ok"  style="text-decoration: none ; color: #ffffff;"> Activa</a></button>
+                          {% endif %}
+                     <button type="button" class="btn btn-success"> <a class="glyphicon glyphicon-backward" href="/reservas/reservas/" style="text-decoration: none ; color: #ffffff;">Volver</a></button>  
+                                 
+                            </div>
+                            <table style="width:100%" class="table table-striped table-bordered table-hover">
+                                <thead>
+                                    <tr bgcolor="#DCDCDC">
+                                        
+                                        <th>Cod</th>
+                                        <th>Ocupante</th>
+                                        <th>Telefono</th>
+                                        <th>Entrada</th>
+                                        <th>Salida</th>
+                                        <th>Hab.</th>
+                                        <th>Medio</th>
+                                        <th>Total</th>
+                                        <th>llegada</th>
+                                        <th>Solicitud</th>
+                                        <th>Peticiones</th>
+                                        <th>Estatus</th>
+                                        <th><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                            </span> </th>
+                                      
+                                        
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                        <tr bgcolor="#FFFACD">
+                                        <td>{{res.id}}</td>
+                                        <td>{{res.nombre_r}} {{res.apellido_r}}</td>
+                                        <td>{{res.telefono}}</td>
+                                        <td >{{res.id_datos_reserva.f_entrada}}</td>
+                                        <td  height=20%>{{res.id_datos_reserva.f_salida}}</td>
+                                        <td height=20%>#{{res.id_num_habitaciones.numero_habitacion}} {{res.id_num_habitaciones.id_categoria.nombre_c}}</td>
+                                        <td height=20%>{{res.Forma_pago.metodo}}</td>
+                                        <td height=20%>${{res.tarifa_pago}}</td>
+                                        <td height=10%>{{res.hora_de_llegada}}</td>
+                                        <td height=10%>{{res.fecha_reserva}}</td>
+                                        <td height=20%>{{res.peticiones}}</td>
+                                        
+                                         <td>{% if res.estatus_reservacion >= 1 %}<button type="button" class="btn btn-warning">En espera</button>
+                                        {% else %}
+                                        <button type="button" class="btn btn-success">Activa</button>
+                                       {% endif %}
+                                        </td>
+                                        <td><div>
+                                          
+                                            <a class="glyphicon glyphicon-trash" href="/reservas/eliminar_reserva/{{res.id}}" onclick="return ConfirmDelete()"></a></button>
+                                        </div></td>
+                                       </tr> 
+                                    
+                                   
+                                </tbody>
+                                
+                            </table>
+                            <span class="glyphicon glyphicon-user" aria-hidden="true">Usuario:{{res.id_datos_reserva.id_usuario}}</span>
+                    <hr><span class="glyphicon glyphicon-envelope" aria-hidden="true">Email: {{res.id_datos_reserva.id_usuario.email}}</span>
+                    
+                           
+                        </div>
+                  
+                        <br>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+</div>
+
+{% endblock %}
